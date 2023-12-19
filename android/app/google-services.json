@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "439195031508",
+    "project_id": "flash-chat-2614d",
+    "storage_bucket": "flash-chat-2614d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439195031508:android:3e801ccc82f51606d7e841",
+        "android_client_info": {
+          "package_name": "com.AbuHebil.flash_app_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2gSsrWbP_La2F5ZKNR4ph0iwx9gs7U_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
