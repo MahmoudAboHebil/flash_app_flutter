@@ -71,7 +71,7 @@ class _ChatScreenState extends State<ChatScreen> {
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             MessageStream(),
             Container(
@@ -121,8 +121,13 @@ class MessageStream extends StatelessWidget {
       stream: _firebase.collection('messages').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return CircularProgressIndicator(
-            backgroundColor: Colors.lightBlueAccent,
+          return Container(
+            margin: EdgeInsets.only(top: 50),
+            width: 25,
+            height: 25,
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.lightBlueAccent,
+            ),
           );
         }
         final messages = snapshot.data!.docs;
