@@ -1,16 +1,13 @@
-# flash_app_flutter
+![cart](https://github.com/MahmoudAboHebil/flash_app_flutter/assets/85369648/82cdd22a-ca47-4cc4-8cb4-2487f35be709)
 
-A new Flutter project.
+# Flash Chat ⚡️
 
-## Getting Started
+a modern messaging app where users can sign up and log in to chat.
 
-This project is a starting point for a Flutter application.
+![2](https://github.com/MahmoudAboHebil/flash_app_flutter/assets/85369648/9034201e-6d3d-476d-8373-2105829bcd58)    ![1](https://github.com/MahmoudAboHebil/flash_app_flutter/assets/85369648/9caf7f6d-192c-4515-b597-2f6c6c1f341e)
 
-A few resources to get you started if this is your first Flutter project:
+![3](https://github.com/MahmoudAboHebil/flash_app_flutter/assets/85369648/55c24411-3197-4690-9e7a-44afa1e457e9)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
