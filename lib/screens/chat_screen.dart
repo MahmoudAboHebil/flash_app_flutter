@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'dart:math';
 import '../constants.dart';
 
 final _firebase = FirebaseFirestore.instance;
@@ -44,13 +44,22 @@ class _ChatScreenState extends State<ChatScreen> {
   //     print(message.data());
   //   }
   // }
-  // void messageStream() async {
-  //   await for (var snapshot in _firebase.collection('messages').snapshots()) {
-  //     for (var message in snapshot.docs) {
-  //       print(message.data());
-  //     }
-  //   }
-  // }
+  void messageStream() async {
+    await for (var snapshot in _firebase.collection('messages').snapshots()) {
+      for (var message in snapshot.docs) {
+        print(message.data());
+      }
+    }
+  }
+
+  Future<int> getMaxID() async {
+    List<int> ids = [0];
+    final messages = await _firebase.collection('messages').get();
+    for (var message in messages.docs) {
+      ids.add(int.parse(message.id));
+    }
+    return ids.reduce(max);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,10 +100,13 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      int maxId = await getMaxID() + 1;
                       messageTextController.clear();
-
-                      _firebase.collection('messages').add({
+                      _firebase
+                          .collection('messages')
+                          .doc(maxId.toString())
+                          .set({
                         'sender': loggedUser!.email,
                         'text': messageText,
                       });
@@ -137,14 +149,17 @@ class MessageStream extends StatelessWidget {
           final messageText = data['text'];
           final messageSender = data['sender'];
           final currentUser = loggedUser!.email;
+          final id = message.id;
 
           final messageBubble = MessageBubble(
             sender: messageSender,
             text: messageText,
             isMe: currentUser == messageSender,
+            Id: int.parse(id),
           );
           messageBubbles.add(messageBubble);
         }
+        messageBubbles.sort((b, a) => a.Id.compareTo(b.Id));
         return Expanded(
           child: ListView(
             reverse: true,
@@ -158,11 +173,16 @@ class MessageStream extends StatelessWidget {
 }
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble({required this.sender, required this.text, required this.isMe});
+  MessageBubble(
+      {required this.sender,
+      required this.text,
+      required this.isMe,
+      required this.Id});
 
   final String sender;
   final String text;
   final bool isMe;
+  final int Id;
 
   @override
   Widget build(BuildContext context) {
